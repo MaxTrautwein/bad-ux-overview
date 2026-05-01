@@ -1,0 +1,17 @@
+{
+    "BaseUrl": "hackathon.dk4max.com",
+    "apps": [
+        {
+            "name": "sample-php",
+            "sample": true,
+            "subdomain": "php",
+            "other": ""
+        },
+        {
+            "name": "sample-angular",
+            "sample": true,
+            "subdomain": "sampleangular",
+            "other": ""
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    volumes:
+      - ./src/:/var/www/html/
+      - ./sample.json:/mnt/sample.json
+    ports:
+      - "8080:80"

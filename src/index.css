@@ -1,0 +1,10 @@
+:root{
+    --border-color: black;
+}
+
+.app{
+    border: 1px solid var(--border-color);
+    border-radius: 0.5em;
+    margin: 1em;
+    padding: 0.5em;
+}
