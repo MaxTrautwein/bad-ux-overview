@@ -5,8 +5,8 @@
     <title>Overview</title>
     <link href="lib/bootstrap.min.css" rel="stylesheet">
     <script src="lib/bootstrap.bundle.min.js"></script>
-    <link href="index.css?v=<?php echo filemtime('style.css'); ?>" rel="stylesheet">
-    <script src="index.js?v=<?php echo filemtime('style.css'); ?>"></script>
+    <link href="index.css?v=<?php echo filemtime('index.css'); ?>" rel="stylesheet">
+    <script src="index.js?v=<?php echo filemtime('index.js'); ?>"></script>
 </head>
 <body>
 <h1>Overview</h1>

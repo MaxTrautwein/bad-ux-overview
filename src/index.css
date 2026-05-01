@@ -34,6 +34,10 @@ main {
 
 .app-list {
     width: 40%;
+    overflow-y: auto;
+    border: 1px dashed darkgray;
+    border-radius: 0.5em;
+    margin-right: 2em;
 }
 
 iframe{
@@ -49,6 +53,11 @@ iframe{
     border-radius: 0.5em;
     margin: 1em;
     padding: 0.5em;
+}
+
+.gitLink {
+    width: 3em;
+    height: 3em;
 }
 
 .app:hover{

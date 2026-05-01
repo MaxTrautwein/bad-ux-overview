@@ -30,6 +30,14 @@ class ApplicationUtil {
         return $url;
     }
 
+    function GetGithubUrl($imageUrl)
+    {
+        if ($imageUrl == ""){
+            return "";
+        }
+        return "https://github.com/" . implode('/', array_slice(explode('/',$imageUrl), 1));
+    }
+
     public function displayApplication($app){
         echo "<div class='app' data-subdomain='" . $app->subdomain . "'>";
         echo "<h3>";
@@ -39,8 +47,14 @@ class ApplicationUtil {
         echo " ".$app->name;
         echo "</h3>";
 
-        echo "<a target='_blank' href='" . $this->getUrl($app->subdomain) ."'>".$app->subdomain."</a>";
+        echo "<a target='_blank' href='" . $this->getUrl($app->subdomain) ."'>View Page</a>";
+        echo "<br>";
+        if (isset($app->image)){
+            echo "<a target='_blank' href='" . $this->GetGithubUrl(isset($app->image) ? $app->image : "")
+                . "'><img src='images/GitHub_Invertocat_White_Clearspace.svg' class='gitLink' alt='link to github repository'/></a>";
+        }
 
+        
     echo "</div>";
 }
 
