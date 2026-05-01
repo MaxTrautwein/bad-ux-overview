@@ -1,5 +1,47 @@
 :root{
-    --border-color: black;
+    --border-color: white;
+    --notice--color: red;
+    --background-color: black;
+    --text-color: white;
+    --border-selected-color: #00cf4c;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: "JetBrains Mono", monospace;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    height: 80vh;
+    max-height: 80%;
+}
+
+.preview{
+    width: 55%;
+}
+
+.app-list {
+    width: 40%;
+}
+
+iframe{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    border: 0.4em solid var(--notice--color);
+    border-radius: 0.5em;
 }
 
 .app{
@@ -7,4 +49,9 @@
     border-radius: 0.5em;
     margin: 1em;
     padding: 0.5em;
+}
+
+.app:hover{
+    border-color: var(--border-selected-color);
+    color: var(--border-selected-color);
 }

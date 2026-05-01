@@ -9,8 +9,10 @@ class ApplicationUtil {
             $this->apps = $data->apps;
             $this->baseUrl = $data->BaseUrl;
         }
+    }
 
-
+    public function FirstAppUrl($https = true) {
+        return $this->getUrl($this->apps[0]->subdomain,$https);
     }
 
     public function displayAllApplications(){
@@ -19,16 +21,25 @@ class ApplicationUtil {
         }
     }
 
-    function getUrl($subDomain)
+    function getUrl($subDomain, $https = true)
     {
-        return "https://" . $subDomain . "." . $this->baseUrl;
+        $url = $subDomain . "." . $this->baseUrl;
+        if ($https) {
+            return "https://" . $url;
+        }
+        return $url;
     }
 
     public function displayApplication($app){
-        echo "<div class='app'>";
+        echo "<div class='app' data-subdomain='" . $app->subdomain . "'>";
+        echo "<h3>";
+        echo "<span class='badge text-bg-secondary text-bg-info'>";
+        echo $app->sample ?  "sample" : "team";
+        echo  "</span>";
+        echo " ".$app->name;
+        echo "</h3>";
 
-        echo "<h3>".$app->name."</h3>";
-        echo "<a href='" . $this->getUrl($app->subdomain) ."'>".$app->subdomain."</a>";
+        echo "<a target='_blank' href='" . $this->getUrl($app->subdomain) ."'>".$app->subdomain."</a>";
 
     echo "</div>";
 }
