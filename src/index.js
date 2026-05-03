@@ -1,14 +1,37 @@
 const main = {
+    SampleToggle: undefined,
+    TeamToggle: undefined,
+    Iframe: undefined,
+    UrlDisplay: undefined,
     UpdateIframe(subdomain){
-        const iframe = document.querySelector('iframe');
-        const urlDisplay = document.querySelector('#iframeUrlDisplay');
-        const url = `${subdomain}.${iframe.src.split("/")[2].split(".").slice(1).join(".")}`
+        const url = `${subdomain}.${this.Iframe.src.split("/")[2].split(".").slice(1).join(".")}`
 
-        urlDisplay.innerHTML = url;
-        iframe.src = `https://${url}`;
+        this.UrlDisplay.innerHTML = url;
+        this.Iframe.src = `https://${url}`;
+    },
+    ConfigureProjectVisibility(){
+        const allSamples = document.querySelectorAll(`[data-sample="1"]`);
+        const allTeams = document.querySelectorAll(`[data-sample="0"]`);
+
+        if(this.SampleToggle.checked){
+            allSamples.forEach(el => {el.classList.remove('hidden');});
+        }else {
+            allSamples.forEach(el => {el.classList.add('hidden');});
+        }
+        if(this.TeamToggle.checked){
+            allTeams.forEach(el => {el.classList.remove('hidden');});
+        }else {
+            allTeams.forEach(el => {el.classList.add('hidden');});
+        }
     },
     init(){
+        main.SampleToggle = document.querySelector('#toggle-sample');
+        main.TeamToggle = document.querySelector('#toggle-team');
+        main.Iframe = document.querySelector('iframe');
+        main.UrlDisplay = document.querySelector('#iframeUrlDisplay');
 
+        main.SampleToggle.addEventListener('change', (event) => {main.ConfigureProjectVisibility()});
+        main.TeamToggle.addEventListener('change', (event) => {main.ConfigureProjectVisibility()});
 
         const elements = document.querySelectorAll('.app');
         elements.forEach(el => {

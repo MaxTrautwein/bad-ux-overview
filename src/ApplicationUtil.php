@@ -39,9 +39,9 @@ class ApplicationUtil {
     }
 
     public function displayApplication($app){
-        echo "<div class='app' data-subdomain='" . $app->subdomain . "'>";
+        echo "<div class='app' data-subdomain='" . $app->subdomain . "' data-sample='". $app->sample . "' >";
         echo "<h3>";
-        echo "<span class='badge text-bg-secondary text-bg-info'>";
+        echo "<span class='badge " . ($app->sample ?  "text-bg-info" : "text-bg-success") . " text-bg-secondary'>";
         echo $app->sample ?  "sample" : "team";
         echo  "</span>";
         echo " ".$app->name;

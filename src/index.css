@@ -6,6 +6,10 @@
     --border-selected-color: #00cf4c;
 }
 
+.hidden {
+    display: none;
+}
+
 a {
     color: var(--text-color);
     text-decoration: none;
@@ -32,12 +36,15 @@ main {
     width: 55%;
 }
 
-.app-list {
+.app-list-container {
     width: 40%;
+    margin-right: 2em;
+}
+
+.app-list {
     overflow-y: auto;
     border: 1px dashed darkgray;
     border-radius: 0.5em;
-    margin-right: 2em;
 }
 
 iframe{
