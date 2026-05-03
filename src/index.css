@@ -4,6 +4,7 @@
     --background-color: black;
     --text-color: white;
     --border-selected-color: #00cf4c;
+    --size-GitLink: 3em;
 }
 
 .hidden {
@@ -43,6 +44,10 @@ main {
     height: 100%;
 }
 
+.column-1-minWidth{
+    min-width: 23em;
+}
+
 iframe{
     background-color: white;
     width: 100%;
@@ -59,11 +64,26 @@ iframe{
 }
 
 .gitLink {
-    width: 3em;
-    height: 3em;
+    width: var(--size-GitLink);
+    height: var(--size-GitLink);
+}
+
+.viewPage{
+    width: max-content;
+    height: var(--size-GitLink);
+    align-content: center;
+}
+
+.ProjectContent{
+    display: flex;
+    justify-content: space-between;
 }
 
 .app:hover{
     border-color: var(--border-selected-color);
     color: var(--border-selected-color);
+}
+
+#iframeUrlDisplay{
+    word-break: break-all;
 }

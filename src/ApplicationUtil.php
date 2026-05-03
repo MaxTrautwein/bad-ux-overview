@@ -38,21 +38,29 @@ class ApplicationUtil {
         return "https://github.com/" . implode('/', array_slice(explode('/',$imageUrl), 1));
     }
 
+    function echoTypeBadge($type){
+        echo "<span class='badge " . ($type ?  "text-bg-info" : "text-bg-success") . " text-bg-secondary'>";
+    }
+    function echoProjectHeader($app){
+        echo "<h3>";
+        $this->echoTypeBadge($app->sample);
+        echo $app->sample ?  "sample" : "team";
+        echo  "</span> ". $app->name ."</h3>";
+    }
+
     public function displayApplication($app){
         echo "<div class='app' data-subdomain='" . $app->subdomain . "' data-sample='". $app->sample . "' >";
-        echo "<h3>";
-        echo "<span class='badge " . ($app->sample ?  "text-bg-info" : "text-bg-success") . " text-bg-secondary'>";
-        echo $app->sample ?  "sample" : "team";
-        echo  "</span>";
-        echo " ".$app->name;
-        echo "</h3>";
+        $this->echoProjectHeader($app);
 
-        echo "<a target='_blank' href='" . $this->getUrl($app->subdomain) ."'>View Page</a>";
-        echo "<br>";
+        echo "<div class='container ProjectContent'>";
+
+        echo "<a target='_blank' href='" . $this->getUrl($app->subdomain) ."'><div class='viewPage'>View Page</div></a>";
+
         if (isset($app->image)){
-            echo "<a target='_blank' href='" . $this->GetGithubUrl(isset($app->image) ? $app->image : "")
+            echo "<a target='_blank' href='" . $this->GetGithubUrl($app->image)
                 . "'><img src='images/GitHub_Invertocat_White_Clearspace.svg' class='gitLink' alt='link to github repository'/></a>";
         }
+        echo "</div>";
 
         
     echo "</div>";
