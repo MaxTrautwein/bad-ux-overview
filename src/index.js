@@ -30,14 +30,16 @@ const main = {
         main.Iframe = document.querySelector('iframe');
         main.UrlDisplay = document.querySelector('#iframeUrlDisplay');
 
-        main.SampleToggle.addEventListener('change', (event) => {main.ConfigureProjectVisibility()});
-        main.TeamToggle.addEventListener('change', (event) => {main.ConfigureProjectVisibility()});
+        main.SampleToggle.addEventListener('change', (_) => {main.ConfigureProjectVisibility()});
+        main.TeamToggle.addEventListener('change', (_) => {main.ConfigureProjectVisibility()});
 
         const elements = document.querySelectorAll('.app');
         elements.forEach(el => {
             el.addEventListener('click', (event) => {
                 const data = event.currentTarget.dataset.subdomain;
                 main.UpdateIframe(data);
+                document.querySelector('.selectedApp').classList.remove('selectedApp');
+                event.currentTarget.classList.add('selectedApp');
             });
         });
     }

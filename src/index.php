@@ -21,11 +21,14 @@
         <div class="row">
             <div class="col-3 column-1-minWidth">
                 <input type="checkbox" checked="checked" class="btn-check" id="toggle-sample" autocomplete="off">
-                <label class="btn" for="toggle-sample"><span class='badge text-bg-secondary text-bg-info'>Sample</span></label>
+                <label class="btn" for="toggle-sample">
+                    <?php $util->echoTypeBadge(true); ?>
+                </label>
 
                 <input type="checkbox" checked="checked" class="btn-check" id="toggle-team" autocomplete="off">
-                <label class="btn" for="toggle-team"><span
-                            class='badge text-bg-secondary text-bg-success'>Team</span></label>
+                <label class="btn" for="toggle-team">
+                    <?php $util->echoTypeBadge(false); ?>
+                </label>
             </div>
             <div class="col">
                 <h2 id="iframeUrlDisplay"><?php echo $util->FirstAppUrl(false) ?></h2>

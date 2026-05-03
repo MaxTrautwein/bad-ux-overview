@@ -84,6 +84,10 @@ iframe{
     color: var(--border-selected-color);
 }
 
+.selectedApp {
+    color: var(--border-selected-color);
+}
+
 #iframeUrlDisplay{
     word-break: break-all;
 }

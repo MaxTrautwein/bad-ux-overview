@@ -11,17 +11,21 @@ class ApplicationUtil {
         }
     }
 
-    public function FirstAppUrl($https = true) {
+    public function FirstAppUrl($https = true): string
+    {
         return $this->getUrl($this->apps[0]->subdomain,$https);
     }
 
-    public function displayAllApplications(){
+    public function displayAllApplications(): void
+    {
+        $first = true;
         foreach ($this->apps as $app) {
-            $this->displayApplication($app);
+            $this->displayApplication($app, $first);
+            $first = false;
         }
     }
 
-    function getUrl($subDomain, $https = true)
+    function getUrl($subDomain, $https = true): string
     {
         $url = $subDomain . "." . $this->baseUrl;
         if ($https) {
@@ -30,7 +34,7 @@ class ApplicationUtil {
         return $url;
     }
 
-    function GetGithubUrl($imageUrl)
+    function GetGithubUrl($imageUrl): string
     {
         if ($imageUrl == ""){
             return "";
@@ -38,18 +42,24 @@ class ApplicationUtil {
         return "https://github.com/" . implode('/', array_slice(explode('/',$imageUrl), 1));
     }
 
-    function echoTypeBadge($type){
-        echo "<span class='badge " . ($type ?  "text-bg-info" : "text-bg-success") . " text-bg-secondary'>";
+    public function echoTypeBadge(bool $isTypeSample): void
+    {
+        echo "<span class='badge " . ($isTypeSample ?  "text-bg-info" : "text-bg-success") . " text-bg-secondary'>";
+        echo $isTypeSample ?  "Sample" : "Team";
+        echo  "</span>";
+
     }
-    function echoProjectHeader($app){
+    function echoProjectHeader($app): void
+    {
         echo "<h3>";
         $this->echoTypeBadge($app->sample);
-        echo $app->sample ?  "sample" : "team";
-        echo  "</span> ". $app->name ."</h3>";
+        echo  " ". $app->name ."</h3>";
     }
 
-    public function displayApplication($app){
-        echo "<div class='app' data-subdomain='" . $app->subdomain . "' data-sample='". $app->sample . "' >";
+
+    public function displayApplication($app, bool $isFirst = false): void
+    {
+        echo "<div class='app ". ($isFirst ? "selectedApp" : "") ."' data-subdomain='" . $app->subdomain . "' data-sample='". $app->sample . "' >";
         $this->echoProjectHeader($app);
 
         echo "<div class='container ProjectContent'>";
