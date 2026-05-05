@@ -79,6 +79,10 @@ iframe{
     justify-content: space-between;
 }
 
+.agentBadge{
+    margin-left: 0.25em;
+}
+
 .app:hover{
     border-color: var(--border-selected-color);
     color: var(--border-selected-color);

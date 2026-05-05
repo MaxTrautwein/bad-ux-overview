@@ -49,17 +49,30 @@ class ApplicationUtil {
         echo  "</span>";
 
     }
+
+    public function echoAgentBadge(bool $isTypeAgent): void
+    {
+        if ($isTypeAgent){
+            echo "<span class='agentBadge badge text-bg-warning text-bg-secondary'>AI</span>";
+        }
+    }
+
     function echoProjectHeader($app): void
     {
         echo "<h3>";
         $this->echoTypeBadge($app->sample);
+        $this->echoAgentBadge($app->agent);
         echo  " ". $app->name ."</h3>";
     }
 
 
     public function displayApplication($app, bool $isFirst = false): void
     {
-        echo "<div class='app ". ($isFirst ? "selectedApp" : "") ."' data-subdomain='" . $app->subdomain . "' data-sample='". $app->sample . "' >";
+        echo "<div class='app ". ($isFirst ? "selectedApp" : "") .
+            "' data-subdomain='" . $app->subdomain
+            . "' data-sample='". $app->sample
+            . "' data-agent='". $app->agent .
+            "' >";
         $this->echoProjectHeader($app);
 
         echo "<div class='container ProjectContent'>";

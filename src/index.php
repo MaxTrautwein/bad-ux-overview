@@ -29,6 +29,11 @@
                 <label class="btn" for="toggle-team">
                     <?php $util->echoTypeBadge(false); ?>
                 </label>
+
+                <input type="checkbox" checked="checked" class="btn-check" id="toggle-agent" autocomplete="off">
+                <label class="btn" for="toggle-agent">
+                    <?php $util->echoAgentBadge(true); ?>
+                </label>
             </div>
             <div class="col">
                 <h2 id="iframeUrlDisplay"><?php echo $util->FirstAppUrl(false) ?></h2>

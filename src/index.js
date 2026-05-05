@@ -1,6 +1,7 @@
 const main = {
     SampleToggle: undefined,
     TeamToggle: undefined,
+    AgentToggle: undefined,
     Iframe: undefined,
     UrlDisplay: undefined,
     UpdateIframe(subdomain){
@@ -11,27 +12,49 @@ const main = {
     },
     ConfigureProjectVisibility(){
         const allSamples = document.querySelectorAll(`[data-sample="1"]`);
-        const allTeams = document.querySelectorAll(`[data-sample="0"]`);
+        const allTeams = document.querySelectorAll(`[data-sample=""]`);
+        const allAgents = document.querySelectorAll(`[data-agent="1"]`);
+
+        let shouldBeHidden = []
+        let shouldBeShown = []
 
         if(this.SampleToggle.checked){
-            allSamples.forEach(el => {el.classList.remove('hidden');});
+            shouldBeShown.push(...allSamples);
         }else {
-            allSamples.forEach(el => {el.classList.add('hidden');});
+            shouldBeHidden.push(...allSamples);
         }
         if(this.TeamToggle.checked){
-            allTeams.forEach(el => {el.classList.remove('hidden');});
+            shouldBeShown.push(...allTeams);
         }else {
-            allTeams.forEach(el => {el.classList.add('hidden');});
+            shouldBeHidden.push(...allTeams);
         }
+        if(this.AgentToggle.checked){
+            shouldBeShown.push(...allAgents);
+        }else {
+            shouldBeHidden.push(...allAgents);
+        }
+
+        shouldBeShown.forEach(el => {el.classList.remove('hidden');});
+        shouldBeHidden.forEach(el => {el.classList.add('hidden');});
+
+        if(!this.AgentToggle.checked){
+            allAgents.forEach(el => {el.classList.add('hidden');});
+        }
+        if(this.AgentToggle.checked && !this.TeamToggle.checked && !this.SampleToggle.checked){
+            allAgents.forEach(el => {el.classList.remove('hidden');});
+        }
+
     },
     init(){
         main.SampleToggle = document.querySelector('#toggle-sample');
         main.TeamToggle = document.querySelector('#toggle-team');
+        main.AgentToggle = document.querySelector('#toggle-agent');
         main.Iframe = document.querySelector('iframe');
         main.UrlDisplay = document.querySelector('#iframeUrlDisplay');
 
         main.SampleToggle.addEventListener('change', (_) => {main.ConfigureProjectVisibility()});
         main.TeamToggle.addEventListener('change', (_) => {main.ConfigureProjectVisibility()});
+        main.AgentToggle.addEventListener('change', (_) => {main.ConfigureProjectVisibility()});
 
         const elements = document.querySelectorAll('.app');
         elements.forEach(el => {
